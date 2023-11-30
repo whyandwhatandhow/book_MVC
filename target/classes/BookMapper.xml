@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymd.dao.BookMapper">
+
+    <insert id="addBook" parameterType="Books">
+        insert into software.book(book_name,publish,user_id)
+        values(#{book_name},#{publish},#{user_id});
+    </insert>
+
+    <delete id="deleteBookById" parameterType="int">
+        delete from  software.book  where book_id = #{book_id}
+    </delete>
+
+    <update id="updateBook" parameterType="Books">
+        update software.book set book_name=#{book_name},#{publish},#{user_id} where book_id=#{book_id}
+    </update>
+    
+    <select id="queryBookById" resultType="Books">
+        select * from software.book where book_id = #{book_id}
+    </select>
+
+    <select id="queryAllBooks" resultType="Books">
+        select * from software.book
+    </select>
+</mapper>
+
+<!--写完就绑定到mybatis.xml-->
