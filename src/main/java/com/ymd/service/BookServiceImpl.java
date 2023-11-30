@@ -13,6 +13,7 @@ public class BookServiceImpl implements BookService{
 
 //    service调用dao
     @Autowired
+    @Qualifier("bookMapper")
     private BookMapper bookMapper;
     public void setBookMapper(BookMapper bookMapper){
         this.bookMapper=bookMapper;
