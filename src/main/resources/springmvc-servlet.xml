@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+">
+
+<!--这是Dao层整合,主要是数据库-->
+<!--    数据库文件,可以用mybatis读也可以用spring-->
+    <context:property-placeholder location="classpath:database.properties"/>
+<!--    连接池druid-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!-- 其他配置属性 -->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <!-- 其他配置属性 -->
+    </bean>
+
+    <!--    配置dao接口扫描包,动态实现DAO接口可以注入到-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.ymd.dao"/>
+    </bean>
+<!--     在<context:component-scan>中配置需要扫描的包，包括MyBatis Mapper接口的包 -->
+
+
+
+    <!-- sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:BookMapper.xml" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+    </bean>
+
+
+<!--这是service层整合,主要有事务的处理-->
+<!--    扫描service的包-->
+    <context:component-scan base-package="com.ymd.service"/>
+<!--    将所有的业务类注入到spring,可以配置或者注解-->
+    <bean id="bookServiceImpl" class="com.ymd.service.BookServiceImpl">
+        <property name="bookMapper" ref="bookMapper"/>
+    </bean>
+
+<!--    声明事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+
+<!--    整合springmvc-->
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+    <context:component-scan base-package="com.ymd.controller"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>
+
+<!--最后来整合-->
