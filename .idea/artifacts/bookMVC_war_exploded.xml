@@ -1,0 +1,37 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="bookMVC:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/bookMVC_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="bookMVC/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="bookMVC" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: io.micrometer:micrometer-commons:1.10.12" />
+          <element id="library" level="project" name="Maven: io.micrometer:micrometer-observation:1.10.12" />
+          <element id="library" level="project" name="Maven: junit:junit:4.13.1" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:6.0.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:6.0.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:6.0.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:6.0.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:6.0.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:6.0.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:6.0.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:6.0.13" />
+          <element id="library" level="project" name="jakarta.servlet-api-6.0.0" />
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.2.15" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:3.0.1" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.7" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:6.1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:6.1.0" />
+          <element id="library" level="project" name="Maven: jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1" />
+          <element id="library" level="project" name="Maven: jakarta.servlet:jakarta.servlet-api:6.0.0" />
+          <element id="library" level="project" name="mysql-connector-java-8.0.28" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
