@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,34 @@ public class bookController {
         model.addAttribute("list",books);
         return "AllBooks";
     }
+
+    //跳转到添加书籍页面
+    @RequestMapping("/toAddBook")
+    public String toAddBook(){
+        return "addBook";
+    }
+
+    @RequestMapping("/addBook")
+    public String addBook(Books books) {
+        bookService.addBook(books);
+        return "redirect:/book/allBook";
+    }
+
+    @RequestMapping("/toUpdate")
+    public String toUpdate(int id,Model model){
+        Books books = bookService.queryBookById(id);
+        //显示默认值
+        model.addAttribute("QuBooks",books);
+        return "updateBook";
+    }
+
+
+    @RequestMapping("/updateBook")
+    public String updateBook(Books books){
+        bookService.updateBook(books);
+        return "redirect:/book/allBook";
+    }
+
 }
 
 
