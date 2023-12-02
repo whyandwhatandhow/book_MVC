@@ -60,30 +60,29 @@ pojo
 MyBatis 配置
 在 dao 包中创建 BookMapper 并实现基本的 CRUD 方法。同时，创建 BookMapper.xml 定义 SQL 查询。
 
+!!!!!!!!!!!!BookMapper.xml要放到resources中，不然会报错!!!!!!!!!!!!!!!!
 
 
 
 
-
-在 mybatis-config.xml 中配置命名空间：
-    **.iml 文件代码:**
-   ```xml
-   <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-config.dtd">
-    <configuration>
-    <!--配置数据源-->
-    <typeAliases>
-        <package name="com.ymd.pojo"/>
-    </typeAliases>
-
-    <mappers>
-        <mapper class="com.ymd.dao.BookMapper"/>
-    </mappers>
-    </configuration>
-<!-- End of .iml File Code -->
-
+ 在 mybatis-config.xml 中配置命名空间：
+   
+      <?xml version="1.0" encoding="UTF-8" ?>
+         <!DOCTYPE configuration
+         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+         "https://mybatis.org/dtd/mybatis-3-config.dtd">
+      <configuration>
+     <!--配置数据源-->
+     <typeAliases>
+         <package name="com.ymd.pojo"/>
+     </typeAliases>
+ 
+     <mappers>
+         <mapper class="com.ymd.dao.BookMapper"/>
+     </mappers>
+     </configuration>
+ <!-- End of .iml File Code -->
+ 
 
 
 
@@ -96,17 +95,17 @@ Spring 整合
 这样结构化的 README.md 应该能够使读者更容易地按照你项目的步骤进行操作。根据你项目的具体情况，随意进行进一步的自定义。
 
 接下来是Service,service实现一样的方法，
-@Autowired
-@Qualifier("bookMapper")
-private BookMapper bookMapper;
-public void setBookMapper(BookMapper bookMapper){
-this.bookMapper=bookMapper;
-}
+ `@Autowired`
+ `@Qualifier("bookMapper")`
+ `private BookMapper bookMapper;`
+ `public void setBookMapper(BookMapper bookMapper){`
+ `this.bookMapper=bookMapper;`
+ `}`
 这是关联dao
 
 整合：
-  <context:component-scan base-package="com.ymd.service"/>
-<!--    将所有的业务类注入到spring,可以配置或者注解-->
+`<context:component-scan base-package="com.ymd.service"/>
+<!--    将所有的业务类注入到spring,可以配置或者注解-->`
     <bean id="bookServiceImpl" class="com.ymd.service.BookServiceImpl">
         <property name="bookMapper" ref="bookMapper"/>
     </bean>
