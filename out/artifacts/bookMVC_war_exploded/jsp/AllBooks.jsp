@@ -63,8 +63,8 @@
                     <td><%= book.getPublish()%></td>
                     <td><%= book.getUser_id()%></td>
                     <td class="action-buttons">
-                        <a href="${pageContext.request.contextPath}/book/toUpdate">修改</a>  &nbsp; | &nbsp;
-                        <a href="#">删除</a>
+                        <a href="${pageContext.request.contextPath}/book/toUpdate?id=<%=book.getBook_id()%>">修改</a>  &nbsp; | &nbsp;
+                        <a href="${pageContext.request.contextPath}/book/deleteBook?id=<%=book.getBook_id()%>">删除</a>
                     </td>
                 </tr>
                 <% } %>
@@ -77,6 +77,12 @@
     <div class="row">
         <div class="col-md-12">
             <a href="${pageContext.request.contextPath}/book/toAddBook" class="btn btn-primary">添加书籍</a>
+        </div>
+        <div class="col-md-12">
+            <form action="${pageContext.request.contextPath}/book/queryBook" method="post" class="form-inline mb-3">
+                <input type="text" name="queryBookName" class="form-controller" placeholder="请输入要查询的书籍">
+                <input type="submit" value="查询">
+            </form>
         </div>
     </div>
 </div>

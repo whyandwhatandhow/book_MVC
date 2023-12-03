@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.ymd.pojo.Books" %><%--
   Created by IntelliJ IDEA.
   User: dd
   Date: 2023/11/30
@@ -41,19 +41,21 @@
     <div class="col-md-6">
       <!-- Book Form -->
       <form action="${pageContext.request.contextPath}/book/updateBook" method="post">
+        <input type="hidden" name="book_id" value="${QuBooks.book_id}">
+
         <div class="form-group">
           <label>书籍名称:</label>
-          <input type="text" class="form-control"  name="book_name" required>
+          <input type="text" class="form-control" name="book_name" value="${QuBooks.book_name}" required>
         </div>
         <div class="form-group">
           <label>出版社:</label>
-          <input type="text" class="form-control" name="publish" required>
+          <input type="text" class="form-control" name="publish" value="${QuBooks.publish}" required>
         </div>
         <div class="form-group">
           <label>用户编号:</label>
-          <input type="text" class="form-control" name="user_id" required>
+          <input type="text" class="form-control" name="user_id" value="${QuBooks.user_id}" required>
         </div>
-        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="submit" class="btn btn-primary">修改</button>
       </form>
     </div>
   </div>
