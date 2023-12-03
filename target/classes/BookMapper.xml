@@ -14,7 +14,7 @@
     </delete>
 
     <update id="updateBook" parameterType="Books">
-        update software.book set book_name=#{book_name},#{publish},#{user_id} where book_id=#{book_id}
+        update software.book set book_name=#{book_name},publish=#{publish},user_id=#{user_id} where book_id=#{book_id}
     </update>
     
     <select id="queryBookById" resultType="Books">
@@ -23,6 +23,9 @@
 
     <select id="queryAllBooks" resultType="Books">
         select * from software.book
+    </select>
+    <select id="queryBookByName" resultType="com.ymd.pojo.Books">
+        select * from software.book where book_name=#{book_name}
     </select>
 </mapper>
 

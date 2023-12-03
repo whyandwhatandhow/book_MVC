@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -48,10 +49,35 @@ public class bookController {
     }
 
 
+
+    //注意要传id值,因为是自增id,在前端用隐藏域传id
     @RequestMapping("/updateBook")
     public String updateBook(Books books){
         bookService.updateBook(books);
         return "redirect:/book/allBook";
+    }
+
+
+    @RequestMapping("/deleteBook")
+    public String deleteBook(int id){
+        bookService.deleteBookById(id);
+        return "redirect:/book/allBook";
+    }
+
+
+    //这里是与前端list复用
+    @RequestMapping("/queryBook")
+    public String queryBook(String queryBookName,Model model){
+        Books books = bookService.queryBookByName(queryBookName);
+        List<Books> list=new ArrayList<>();
+        list.add(books);
+
+        if(books==null){
+            list=bookService.queryAllBooks();
+        }
+
+        model.addAttribute("list",list);
+        return "queryBook";
     }
 
 }
