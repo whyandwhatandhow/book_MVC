@@ -129,3 +129,9 @@ SpringMVC整合
     </bean>
 
 写好controller层与前端关联上
+
+Ajax技术:
+无需刷新页面就可以更新
+
+
+
